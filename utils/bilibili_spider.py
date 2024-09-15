@@ -107,7 +107,7 @@ class Bilibili_Spider():
             result['pub_date'] = dates[i][0]
             result['now'] = dates[i][1]
             data_list.append(result)
-        
+
         print('write json to {}'.format(json_path))
         dir_name = osp.dirname(json_path)
         mkdir_if_missing(dir_name)
@@ -137,10 +137,10 @@ class Bilibili_Spider():
                 print('failed, try again page {}/{}'.format(idx+1, self.page_num))
                 urls_page, titles_page, plays_page, dates_page, durations_page = self.get_videos_by_page(idx)
             bvs_page = [x.split('/')[-1] for x in urls_page]
-            assert len(urls_page) == len(titles_page), '{} != {}'.format(len(urls_page), len(titles_page)) 
-            assert len(urls_page) == len(plays_page), '{} != {}'.format(len(urls_page), len(titles_page)) 
-            assert len(urls_page) == len(dates_page), '{} != {}'.format(len(urls_page), len(dates_page))  
-            assert len(urls_page) == len(durations_page), '{} != {}'.format(len(urls_page), len(durations_page))  
+            assert len(urls_page) == len(titles_page), '{} != {}'.format(len(urls_page), len(titles_page))
+            assert len(urls_page) == len(plays_page), '{} != {}'.format(len(urls_page), len(titles_page))
+            assert len(urls_page) == len(dates_page), '{} != {}'.format(len(urls_page), len(dates_page))
+            assert len(urls_page) == len(durations_page), '{} != {}'.format(len(urls_page), len(durations_page))
             print('result:')
             print('{}_{}: '.format(self.user_name, self.uid), bvs_page, ', {} in total'.format(len(urls_page)))
             sys.stdout.flush()
@@ -177,9 +177,9 @@ class Bilibili_Spider():
         else:
             url_type = 'video'
             page_total = 1
-        
+
         return play, danmu, date, url_type, page_total
-    
+
     def get_detail(self):
         print('Start to get detailed information for each url.')
         if self.save_by_page:
@@ -213,7 +213,7 @@ class Bilibili_Spider():
                 write_json(data_page, json_path_save)
                 print('dump json file done. total {} urls. \n'.format(len(data_page)))
                 data.extend(data_page)
-            
+
             json_path_save = osp.join(self.save_dir_json, '{}_{}'.format(self.user_name, self.uid), 'detailed', 'full.json')
             print('write json to {}'.format(json_path_save))
             write_json(data, json_path_save)
@@ -240,18 +240,18 @@ class Bilibili_Spider():
                     data[j]['pub_date'] = date
                     data[j]['type'] = url_type
                     data[j]['num'] = page_total
-            
+
             json_path_save = osp.join(self.save_dir_json, '{}_{}'.format(self.user_name, self.uid), 'detailed', 'full.json')
             print('write json to {}'.format(json_path_save))
             write_json(data, json_path_save)
             print('dump json file done. total {} urls. \n'.format(len(data)))
-                
 
 
 
 
 
-            
-            
+
+
+
 
 
