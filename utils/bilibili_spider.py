@@ -7,6 +7,8 @@ import time
 import argparse
 import datetime
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from urllib import parse as url_parse
 import random
@@ -22,9 +24,12 @@ class Bilibili_Spider():
         self.user_url = 'https://space.bilibili.com/{}'.format(uid)
         self.save_dir_json = save_dir_json
         self.save_by_page = save_by_page
-        options = webdriver.FirefoxOptions()
-        options.add_argument('--headless')
-        self.browser = webdriver.Firefox(options=options)
+
+        # 设置chrome选项
+        chrome_options = Options()
+        # 无头浏览器运行会找不到元素，不过这可能是我的问题
+        # chrome_options.add_argument('--headless')
+        self.browser = webdriver.Chrome(options=chrome_options)
         print('spider init done.')
 
     def close(self):
