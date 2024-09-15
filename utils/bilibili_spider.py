@@ -74,7 +74,7 @@ class Bilibili_Spider():
     def get_videos_by_page(self, idx):
         # 获取第 page_idx 页的视频信息
         urls_page, titles_page, plays_page, dates_page, durations_page = [], [], [], [], []
-        page_url = self.user_url + '/video?tid=0&page={}&keyword=&order=pubdate'.format(idx+1)
+        page_url = self.user_url + '/video?tid=0&pn={}&keyword=&order=pubdate'.format(idx + 1)
         self.browser.get(page_url)
         time.sleep(self.t+2*random.random())
         html = BeautifulSoup(self.browser.page_source, features="html.parser")
